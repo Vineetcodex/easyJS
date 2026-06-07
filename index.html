@@ -1,0 +1,1071 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>easyJS | Personal Technology Learning Platform</title>
+  <meta name="description" content="easyJS is a personal learning platform for Web Development, System Design, Security, and DevOps notes.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="spotlight" aria-hidden="true"></div>
+  <canvas id="particleCanvas" aria-hidden="true"></canvas>
+  <div class="grid-bg" aria-hidden="true"></div>
+  <div class="progress-bar" aria-hidden="true"><span id="scrollProgress"></span></div>
+
+  <header class="site-header">
+    <a class="brand" href="#top" aria-label="easyJS home">
+      <span class="brand-mark">eJ</span>
+      <span>easyJS</span>
+    </a>
+    <nav class="top-nav" aria-label="Primary navigation">
+      <a href="#web">Web</a>
+      <a href="#system">System</a>
+      <a href="#security">Security</a>
+      <a href="#devops">DevOps</a>
+      <a href="#roadmap">Roadmap</a>
+    </nav>
+  </header>
+
+  <main id="top">
+    <section class="hero section-shell">
+      <div class="hero-copy reveal">
+        <p class="eyebrow">Personal technology notes</p>
+        <h1>easyJS</h1>
+        <p class="typing-line" aria-label="Making Technology Easier, One Concept at a Time.">
+          <span id="typingText"></span><span class="caret"></span>
+        </p>
+        <p class="hero-description">A place where I document my journey through Web Development, System Design, Security, and DevOps.</p>
+        <div class="hero-actions">
+          <a class="primary-action" href="#web">Start learning</a>
+          <a class="ghost-action" href="#roadmap">View roadmap</a>
+        </div>
+      </div>
+
+      <aside class="hero-panel reveal" aria-label="Learning dashboard preview">
+        <div class="panel-header">
+          <span>Learning Pulse</span>
+          <strong id="overallProgress">0%</strong>
+        </div>
+        <div class="ring-wrap">
+          <svg class="progress-ring" viewBox="0 0 120 120" role="img" aria-label="Web development progress">
+            <circle class="ring-track" cx="60" cy="60" r="48"></circle>
+            <circle class="ring-value" id="progressRing" cx="60" cy="60" r="48"></circle>
+          </svg>
+          <div class="ring-center">
+            <span id="completedCount">0/9</span>
+            <small>topics read</small>
+          </div>
+        </div>
+        <div class="mini-stats">
+          <div><span>Active</span><strong>Web Development</strong></div>
+          <div><span>Badges</span><strong id="badgeCount">0 unlocked</strong></div>
+        </div>
+      </aside>
+    </section>
+
+    <section class="tool-strip section-shell reveal" aria-label="Learning tools">
+      <label class="search-box" for="topicSearch">
+        <span>Search</span>
+        <input id="topicSearch" type="search" placeholder="Find HTML, DOM, arrays..." autocomplete="off">
+      </label>
+      <div class="badge-row" id="achievementBadges" aria-label="Achievement badges"></div>
+    </section>
+
+    <section class="section-shell active-learning" id="web">
+      <div class="section-heading reveal">
+        <p class="eyebrow">Active Section</p>
+        <h2>Web Development</h2>
+        <p>Expandable concept cards with notes, examples, demos, and a structure that is easy to edit as your learning library grows.</p>
+        <!-- JS Notes CTA -->
+        <div class="js-notes-cta reveal">
+          <div class="js-notes-cta-inner">
+            <div class="js-notes-cta-icon" aria-hidden="true">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                <polyline points="14 2 14 8 20 8"/>
+                <line x1="16" y1="13" x2="8" y2="13"/>
+                <line x1="16" y1="17" x2="8" y2="17"/>
+                <polyline points="10 9 9 9 8 9"/>
+              </svg>
+            </div>
+            <div class="js-notes-cta-text">
+              <strong>JavaScript Deep-Dive Notes</strong>
+              <span>4 lectures · History, Data Types, Operators, Loops, Strings &amp; more</span>
+            </div>
+            <button class="js-notes-btn" id="openJsNotes" type="button" aria-haspopup="dialog">
+              <span>Open Notes</span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <polyline points="9 18 15 12 9 6"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="topic-grid" id="topicGrid"></div>
+    </section>
+
+    <section class="section-shell roadmap-section" id="roadmap">
+      <div class="section-heading reveal">
+        <p class="eyebrow">Learning Roadmap</p>
+        <h2>From foundation to fluency</h2>
+      </div>
+      <div class="roadmap reveal">
+        <div class="road-step is-current"><span>01</span><strong>Structure</strong><p>HTML, semantic layouts, forms, and accessible content.</p></div>
+        <div class="road-step"><span>02</span><strong>Style</strong><p>CSS layout, responsive systems, animation, and visual polish.</p></div>
+        <div class="road-step"><span>03</span><strong>Behavior</strong><p>JavaScript fundamentals, DOM, events, and small interactions.</p></div>
+        <div class="road-step"><span>04</span><strong>Scale</strong><p>System design, security habits, automation, and deployment.</p></div>
+      </div>
+    </section>
+
+    <section class="future-layers section-shell">
+      <article class="future-card network reveal" id="system">
+        <canvas class="layer-canvas" data-layer="network" aria-hidden="true"></canvas>
+        <div>
+          <p class="eyebrow">System Design</p>
+          <h2>The Architecture Layer</h2>
+          <span class="status-pill">Coming Soon</span>
+        </div>
+      </article>
+
+      <article class="future-card shield reveal" id="security">
+        <div class="cyber-visual" aria-hidden="true">
+          <span></span><span></span><span></span><span></span>
+        </div>
+        <div>
+          <p class="eyebrow">Security</p>
+          <h2>The Defense Layer</h2>
+          <span class="status-pill">Coming Soon</span>
+        </div>
+      </article>
+
+      <article class="future-card pipeline reveal" id="devops">
+        <div class="pipeline-visual" aria-hidden="true">
+          <span></span><span></span><span></span><span></span>
+        </div>
+        <div>
+          <p class="eyebrow">DevOps</p>
+          <h2>The Automation Layer</h2>
+          <span class="status-pill">Coming Soon</span>
+        </div>
+      </article>
+    </section>
+  </main>
+
+  <footer class="site-footer section-shell">
+    <span>easyJS</span>
+    <p>Making Technology Easier, One Concept at a Time.</p>
+  </footer>
+
+  <template id="topicTemplate">
+    <article class="topic-card reveal">
+      <button class="topic-trigger" type="button" aria-expanded="false">
+        <span>
+          <small></small>
+          <strong></strong>
+        </span>
+        <i aria-hidden="true"></i>
+      </button>
+      <div class="topic-body">
+        <p class="summary"></p>
+        <div class="topic-columns">
+          <section>
+            <h3>Notes</h3>
+            <ul class="notes"></ul>
+          </section>
+          <section>
+            <h3>Code Example</h3>
+            <pre><code></code></pre>
+          </section>
+        </div>
+        <section class="demo-area">
+          <h3>Interactive Demo</h3>
+          <div class="demo-content"></div>
+        </section>
+        <label class="complete-toggle">
+          <input type="checkbox">
+          <span>Mark as learned</span>
+        </label>
+      </div>
+    </article>
+  </template>
+
+  <!-- ═══════════════════════════════════════════════════════
+       JS NOTES MODAL
+  ════════════════════════════════════════════════════════ -->
+  <div id="jsNotesModal" class="jsnotes-overlay" role="dialog" aria-modal="true" aria-label="JavaScript Notes" hidden>
+    <div class="jsnotes-backdrop" id="jsNotesBackdrop"></div>
+    <div class="jsnotes-shell">
+
+      <!-- Sidebar -->
+      <aside class="jsnotes-sidebar">
+        <div class="jsnotes-sidebar-header">
+          <div class="jsnotes-logo">
+            <span class="jsnotes-logo-mark">JS</span>
+            <div>
+              <strong>JavaScript Notes</strong>
+              <small>4 Lectures</small>
+            </div>
+          </div>
+          <button class="jsnotes-close" id="closeJsNotes" type="button" aria-label="Close notes">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+          </button>
+        </div>
+
+        <nav class="jsnotes-nav" aria-label="Lecture navigation">
+          <button class="jsnotes-nav-item is-active" data-lecture="0" type="button">
+            <span class="jsnotes-nav-num">01</span>
+            <span class="jsnotes-nav-label">
+              <strong>Introduction to JS</strong>
+              <small>Why JavaScript Exists</small>
+            </span>
+          </button>
+          <button class="jsnotes-nav-item" data-lecture="1" type="button">
+            <span class="jsnotes-nav-num">02</span>
+            <span class="jsnotes-nav-label">
+              <strong>Data Types</strong>
+              <small>Primitives &amp; Objects</small>
+            </span>
+          </button>
+          <button class="jsnotes-nav-item" data-lecture="2" type="button">
+            <span class="jsnotes-nav-num">03</span>
+            <span class="jsnotes-nav-label">
+              <strong>Operators</strong>
+              <small>Expressions &amp; Comparisons</small>
+            </span>
+          </button>
+          <button class="jsnotes-nav-item" data-lecture="3" type="button">
+            <span class="jsnotes-nav-num">04</span>
+            <span class="jsnotes-nav-label">
+              <strong>Loops, Numbers &amp; Strings</strong>
+              <small>Control flow &amp; built-ins</small>
+            </span>
+          </button>
+        </nav>
+
+        <div class="jsnotes-sidebar-footer">
+          <div class="jsnotes-lecture-progress">
+            <span>Reading progress</span>
+            <div class="jsnotes-progress-track"><div class="jsnotes-progress-fill" id="jsReadProgress"></div></div>
+          </div>
+        </div>
+      </aside>
+
+      <!-- Content pane -->
+      <main class="jsnotes-content" id="jsNotesContent" tabindex="0">
+        <!-- Lecture 0 -->
+        <article class="jsnotes-lecture" data-lecture="0">
+          <header class="jsnotes-lecture-header">
+            <p class="jsnotes-eyebrow">Lecture 01</p>
+            <h1>Introduction to JavaScript</h1>
+            <p class="jsnotes-subtitle">The story of Netscape, Sun, and Microsoft — and a language built in ten days.</p>
+          </header>
+
+          <section class="jsnotes-section">
+            <h2>Why JavaScript Exists</h2>
+            <p>Before you write a single line of JavaScript, it helps to know <em>why it exists at all</em>. The world already had C++, Java, and Python — powerful, proven languages. So why invent another one? The answer is a genuine story: a corporate war, a ten-day scramble, and a "silly little brother" language that outlived every rival.</p>
+          </section>
+
+          <div class="jsnotes-timeline">
+            <div class="jsnotes-timeline-item">
+              <div class="jsnotes-timeline-marker">1</div>
+              <div class="jsnotes-timeline-body">
+                <h3>The Web Was Born Dead</h3>
+                <p>In the early 1990s, a web page was a static document. If you filled in a form and made a mistake, the page had to ship your data all the way to a server and wait for a reply just to say "that's wrong, try again." Netscape realized the web needed to come alive and respond instantly.</p>
+              </div>
+            </div>
+            <div class="jsnotes-timeline-item">
+              <div class="jsnotes-timeline-marker">2</div>
+              <div class="jsnotes-timeline-body">
+                <h3>Enter Sun Microsystems and Java</h3>
+                <p>Sun Microsystems had created <strong>Java</strong> with one powerful promise: <em>"write once, run anywhere."</em> In 1995, Sun and Netscape formed a partnership to put Java into the browser — joining forces against a common enemy: Microsoft.</p>
+              </div>
+            </div>
+            <div class="jsnotes-timeline-item">
+              <div class="jsnotes-timeline-marker">3</div>
+              <div class="jsnotes-timeline-body">
+                <h3>The Secret War Against Microsoft</h3>
+                <p>Microsoft's power came from Windows. Every program was written for Windows, so if you wanted to use it, you needed Windows. Sun and Netscape dreamed: what if all software ran inside the browser? Then Windows would become irrelevant — reduced to little more than an expensive way to turn the computer on.</p>
+                <div class="jsnotes-callout jsnotes-callout--yellow">
+                  <strong>💡 The threat:</strong> If software lived in the browser, who would pay extra for Windows? That was the threat Microsoft genuinely feared.
+                </div>
+              </div>
+            </div>
+            <div class="jsnotes-timeline-item">
+              <div class="jsnotes-timeline-marker">4</div>
+              <div class="jsnotes-timeline-body">
+                <h3>Why a Second Language Was Needed</h3>
+                <p>Java was too heavy for "glue work." Netscape imagined two kinds of work:</p>
+                <ul>
+                  <li><strong>The heavy lifting</strong> — big self-contained programs (charts, games) → Java's territory.</li>
+                  <li><strong>The glue</strong> — small touches: react to a click, check a form field, change text → needed to be simple enough for web designers.</li>
+                </ul>
+                <p>Java was badly suited to the glue job: it ran in a sealed box and couldn't touch the page, was too heavyweight, and too hard for designers to write.</p>
+              </div>
+            </div>
+            <div class="jsnotes-timeline-item">
+              <div class="jsnotes-timeline-marker">5</div>
+              <div class="jsnotes-timeline-body">
+                <h3>Ten Days in May 1995</h3>
+                <p>Netscape hired <strong>Brendan Eich</strong> and asked him to build the new glue language. The prototype was written in roughly <strong>ten days</strong> in May 1995. Because of the Sun partnership, marketing demanded the language <em>look like Java</em> to ride its popularity — ruling out Python or Perl even though they would have technically fit better.</p>
+                <div class="jsnotes-callout jsnotes-callout--blue">
+                  <strong>🔤 Name trivia:</strong> It was called <strong>JavaScript</strong> purely to borrow Java's fame. The two languages are largely unrelated. Java and JavaScript are as related as "car" and "carpet."
+                </div>
+              </div>
+            </div>
+            <div class="jsnotes-timeline-item">
+              <div class="jsnotes-timeline-marker">6</div>
+              <div class="jsnotes-timeline-body">
+                <h3>How the Little Brother Won</h3>
+                <p>Java was the more powerful language. JavaScript won by being in the right place:</p>
+                <ul>
+                  <li><strong>No plugin, no waiting</strong> — JavaScript was already inside every browser and ran instantly.</li>
+                  <li><strong>Security</strong> — The Java plugin became a notorious source of security holes.</li>
+                  <li><strong>JavaScript caught up</strong> — Around 2011, browsers gained fast JS engines.</li>
+                  <li><strong>It lived in the page</strong> — Java sat in a box; JavaScript was woven into the document.</li>
+                </ul>
+                <p>Browsers dropped Java applet support entirely around 2015–2017. The "silly little glue language" became the foundation of the modern web.</p>
+              </div>
+            </div>
+          </div>
+
+          <section class="jsnotes-section">
+            <h2>Why Not Just Use C++?</h2>
+            <div class="jsnotes-comparison-grid">
+              <div class="jsnotes-code-block">
+                <div class="jsnotes-code-label">C++ "Hello World"</div>
+                <pre><code>#include&lt;iostream&gt;
+using namespace std;
+int main() {
+   cout &lt;&lt; "Hello World";
+}</code></pre>
+              </div>
+              <div class="jsnotes-code-block">
+                <div class="jsnotes-code-label">JavaScript "Hello World"</div>
+                <pre><code>console.log("Hello World")</code></pre>
+              </div>
+            </div>
+
+            <h3>Security Nightmare with C++</h3>
+            <p>Running arbitrary C++ code from a website would be catastrophic. Here's why:</p>
+            <div class="jsnotes-danger-cards">
+              <div class="jsnotes-danger-card">
+                <div class="jsnotes-danger-icon">📁</div>
+                <strong>File System Access</strong>
+                <pre><code>// Could read/write/delete any file
+std::ofstream file("secrets.txt");
+file &lt;&lt; "stolen data";</code></pre>
+              </div>
+              <div class="jsnotes-danger-card">
+                <div class="jsnotes-danger-icon">⚡</div>
+                <strong>System Call Execution</strong>
+                <pre><code>// Could wipe your drive
+system("rm -rf /");
+system("format C:");</code></pre>
+              </div>
+              <div class="jsnotes-danger-card">
+                <div class="jsnotes-danger-icon">🧠</div>
+                <strong>Direct Memory Access</strong>
+                <pre><code>// Could overwrite OS memory
+int* p = (int*)0xB8000;
+*p = 42;</code></pre>
+              </div>
+              <div class="jsnotes-danger-card">
+                <div class="jsnotes-danger-icon">🌐</div>
+                <strong>Raw Networking</strong>
+                <pre><code>// Could open arbitrary sockets
+// bypassing browser security
+connect(...);</code></pre>
+              </div>
+            </div>
+
+            <h3>Hardware Constraints in 1995</h3>
+            <div class="jsnotes-specs-table">
+              <div class="jsnotes-spec-row jsnotes-spec-row--header">
+                <span>Component</span><span>1995 Spec</span><span>Modern Spec</span>
+              </div>
+              <div class="jsnotes-spec-row">
+                <span>RAM</span><span>4–8 MB</span><span>16–64 GB</span>
+              </div>
+              <div class="jsnotes-spec-row">
+                <span>Hard Disk</span><span>200–500 MB</span><span>1–4 TB SSD</span>
+              </div>
+              <div class="jsnotes-spec-row">
+                <span>CPU</span><span>Pentium 75–133 MHz</span><span>3–5 GHz multi-core</span>
+              </div>
+            </div>
+          </section>
+
+          <div class="jsnotes-callout jsnotes-callout--green jsnotes-takeaway">
+            <strong>🎯 One-Sentence Takeaway:</strong> Other languages own the computer. JavaScript owns the browser tab — and the browser turned out to be a very big room. It didn't win by being the most powerful. It won by being woven into the page, already there, ready to run.
+          </div>
+        </article>
+
+        <!-- Lecture 1 -->
+        <article class="jsnotes-lecture" data-lecture="1" hidden>
+          <header class="jsnotes-lecture-header">
+            <p class="jsnotes-eyebrow">Lecture 02</p>
+            <h1>Data Types in JavaScript</h1>
+            <p class="jsnotes-subtitle">How the computer stores different kinds of things — and why JavaScript's approach is unusual.</p>
+          </header>
+
+          <section class="jsnotes-section">
+            <h2>The Original Problem</h2>
+            <p>Imagine you're building a computer. You have RAM — it's just a bunch of 0s and 1s. Someone says: "store the number <code>42</code>" and "store the word <code>hello</code>".</p>
+            <div class="jsnotes-callout jsnotes-callout--yellow">
+              <strong>⚠️ The core problem:</strong> <code>01001000</code> could be the number 72, the character 'H', part of a memory address, or a boolean true. Same bits — completely different meaning. That's why data types were invented.
+            </div>
+
+            <div class="jsnotes-type-tree">
+              <div class="jsnotes-code-block">
+                <div class="jsnotes-code-label">JavaScript Type Hierarchy</div>
+                <pre><code>Every JS value
+├── Primitives  (by value, immutable)
+│   ├── number      → math
+│   ├── string      → text
+│   ├── boolean     → true / false
+│   ├── undefined   → not assigned
+│   ├── null        → empty on purpose
+│   ├── bigint      → huge integers
+│   └── symbol      → guaranteed-unique id
+└── Objects     (by reference, mutable)
+    ├── {}          → key → value
+    ├── []          → ordered lists
+    ├── function    → reusable code
+    └── ...everything else</code></pre>
+              </div>
+            </div>
+          </section>
+
+          <section class="jsnotes-section">
+            <h2>Variable Declarations</h2>
+
+            <h3><code>const</code></h3>
+            <p>Declares a block-scoped variable with a <strong>constant reference</strong>. Use this as your default.</p>
+            <div class="jsnotes-prop-list">
+              <div class="jsnotes-prop"><span class="jsnotes-prop-key">Scope</span><span>Block — only accessible within its <code>{}</code> block.</span></div>
+              <div class="jsnotes-prop"><span class="jsnotes-prop-key">Reassignment</span><span>❌ Not allowed — throws <code>TypeError</code>.</span></div>
+              <div class="jsnotes-prop"><span class="jsnotes-prop-key">Initialization</span><span>✅ Mandatory — must be initialized at declaration.</span></div>
+              <div class="jsnotes-prop"><span class="jsnotes-prop-key">Hoisting</span><span>Hoisted but in Temporal Dead Zone (TDZ). Accessing before declaration = <code>ReferenceError</code>.</span></div>
+              <div class="jsnotes-prop"><span class="jsnotes-prop-key">Mutability</span><span>Only the <em>reference</em> is constant. Object properties can still be modified.</span></div>
+            </div>
+            <div class="jsnotes-code-block">
+              <div class="jsnotes-code-label">const examples</div>
+              <pre><code>const PI = 3.14159;
+// PI = 3; // ❌ TypeError
+
+const CONFIG = { port: 8080 };
+CONFIG.port = 3000; // ✅ Allowed — same reference, different property
+
+// console.log(MY_CONST); // ❌ ReferenceError (TDZ)
+const MY_CONST = 100;</code></pre>
+            </div>
+
+            <h3><code>let</code></h3>
+            <p>Declares a block-scoped variable that <strong>can be reassigned</strong>. Use when the value needs to change.</p>
+            <div class="jsnotes-prop-list">
+              <div class="jsnotes-prop"><span class="jsnotes-prop-key">Scope</span><span>Block</span></div>
+              <div class="jsnotes-prop"><span class="jsnotes-prop-key">Reassignment</span><span>✅ Allowed</span></div>
+              <div class="jsnotes-prop"><span class="jsnotes-prop-key">Initialization</span><span>Optional — defaults to <code>undefined</code> if not set.</span></div>
+              <div class="jsnotes-prop"><span class="jsnotes-prop-key">Hoisting</span><span>Hoisted but in TDZ. Accessing before declaration = <code>ReferenceError</code>.</span></div>
+            </div>
+            <div class="jsnotes-code-block">
+              <div class="jsnotes-code-label">let examples</div>
+              <pre><code>let counter = 0;
+counter = 1; // ✅ Allowed
+
+let name; // ✅ Allowed — name is undefined
+name = "Alice";</code></pre>
+            </div>
+
+            <h3><code>var</code> — ⚠️ Avoid in Modern Code</h3>
+            <p>Function-scoped, hoisted with value <code>undefined</code>, allows redeclaration. Use is discouraged in ES6+.</p>
+            <div class="jsnotes-code-block">
+              <div class="jsnotes-code-label">var quirks</div>
+              <pre><code>if (true) {
+  var leak = "I escape the block!";
+}
+console.log(leak); // "I escape the block!" 😱
+
+console.log(myVar); // undefined (no error — hoisted)
+var myVar = "Hello";</code></pre>
+            </div>
+
+            <div class="jsnotes-table">
+              <div class="jsnotes-table-row jsnotes-table-header">
+                <span>Feature</span><span>var</span><span>let</span><span>const</span>
+              </div>
+              <div class="jsnotes-table-row">
+                <span>Scope</span><span>Function</span><span>Block</span><span>Block</span>
+              </div>
+              <div class="jsnotes-table-row">
+                <span>Reassignable</span><span>✅</span><span>✅</span><span>❌</span>
+              </div>
+              <div class="jsnotes-table-row">
+                <span>Redeclarable</span><span>✅</span><span>❌</span><span>❌</span>
+              </div>
+              <div class="jsnotes-table-row">
+                <span>Hoisted Value</span><span>undefined</span><span>TDZ</span><span>TDZ</span>
+              </div>
+              <div class="jsnotes-table-row">
+                <span>Modern Practice</span><span>Avoid ❌</span><span>When needed ✅</span><span>Default ✅</span>
+              </div>
+            </div>
+          </section>
+
+          <section class="jsnotes-section">
+            <h2>Primitive Types (7 total)</h2>
+
+            <div class="jsnotes-type-cards">
+              <div class="jsnotes-type-card">
+                <div class="jsnotes-type-badge" style="background:rgba(0,212,255,0.15);color:#00d4ff;">string</div>
+                <p>Represents textual data. Use single quotes, double quotes, or backtick template literals.</p>
+                <pre><code>let name = "Alice";
+let tmpl = `Hi ${name}`;</code></pre>
+              </div>
+              <div class="jsnotes-type-card">
+                <div class="jsnotes-type-badge" style="background:rgba(97,242,167,0.15);color:#61f2a7;">number</div>
+                <p>Both integers and floats. Includes <code>Infinity</code>, <code>-Infinity</code>, and <code>NaN</code>.</p>
+                <pre><code>let n = 3.14;
+let nan = NaN;
+let inf = Infinity;</code></pre>
+              </div>
+              <div class="jsnotes-type-card">
+                <div class="jsnotes-type-badge" style="background:rgba(255,209,102,0.15);color:#ffd166;">boolean</div>
+                <p>Only two values: <code>true</code> or <code>false</code>.</p>
+                <pre><code>let isActive = true;
+let done = false;</code></pre>
+              </div>
+              <div class="jsnotes-type-card">
+                <div class="jsnotes-type-badge" style="background:rgba(255,79,216,0.15);color:#ff4fd8;">undefined</div>
+                <p>A variable declared but not yet assigned. The engine's emptiness.</p>
+                <pre><code>let user;
+console.log(user); // undefined</code></pre>
+              </div>
+              <div class="jsnotes-type-card">
+                <div class="jsnotes-type-badge" style="background:rgba(255,79,216,0.15);color:#ff4fd8;">null</div>
+                <p>Intentional absence. Your emptiness — you explicitly set it.</p>
+                <pre><code>let data = null; // on purpose</code></pre>
+              </div>
+              <div class="jsnotes-type-card">
+                <div class="jsnotes-type-badge" style="background:rgba(0,212,255,0.15);color:#00d4ff;">bigint</div>
+                <p>Integers larger than <code>2^53 - 1</code>. Use the <code>n</code> suffix.</p>
+                <pre><code>const big = 9007199254740991n;</code></pre>
+              </div>
+              <div class="jsnotes-type-card">
+                <div class="jsnotes-type-badge" style="background:rgba(97,242,167,0.15);color:#61f2a7;">symbol</div>
+                <p>Unique, anonymous identifiers. Every symbol is different.</p>
+                <pre><code>const id1 = Symbol('id');
+const id2 = Symbol('id');
+id1 === id2; // false</code></pre>
+              </div>
+            </div>
+          </section>
+
+          <section class="jsnotes-section">
+            <h2>Value vs. Reference — The Critical Distinction</h2>
+
+            <div class="jsnotes-comparison-grid">
+              <div>
+                <h3 style="color:var(--green)">✅ Primitives — Copied by Value</h3>
+                <div class="jsnotes-code-block">
+                  <pre><code>let a = 10;
+let b = a; // copy of value 10
+
+b = 20;
+console.log(a); // 10 — unchanged
+console.log(b); // 20</code></pre>
+                </div>
+              </div>
+              <div>
+                <h3 style="color:var(--pink)">⚠️ Objects — Copied by Reference</h3>
+                <div class="jsnotes-code-block">
+                  <pre><code>let obj1 = { value: 10 };
+let obj2 = obj1; // same reference!
+
+obj2.value = 20;
+console.log(obj1.value); // 20 😱
+console.log(obj2.value); // 20</code></pre>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section class="jsnotes-section">
+            <h2>The <code>typeof</code> Operator</h2>
+            <div class="jsnotes-code-block">
+              <pre><code>typeof "Hello"       // "string"
+typeof 42            // "number"
+typeof true          // "boolean"
+typeof undefined     // "undefined"
+typeof 10n           // "bigint"
+typeof Symbol('id')  // "symbol"
+
+typeof { a: 1 }      // "object"
+typeof [1, 2, 3]     // "object"
+typeof function(){}  // "function"
+typeof null          // "object" ← famous JS bug!</code></pre>
+            </div>
+            <div class="jsnotes-callout jsnotes-callout--yellow">
+              <strong>⚠️ Known Bug:</strong> <code>typeof null === "object"</code> is a long-standing, well-known bug in JavaScript that cannot be fixed for backwards-compatibility reasons.
+            </div>
+          </section>
+        </article>
+
+        <!-- Lecture 2 -->
+        <article class="jsnotes-lecture" data-lecture="2" hidden>
+          <header class="jsnotes-lecture-header">
+            <p class="jsnotes-eyebrow">Lecture 03</p>
+            <h1>Operators &amp; Data Type Comparisons</h1>
+            <p class="jsnotes-subtitle">How JavaScript evaluates expressions, compares values, and where the tricky parts hide.</p>
+          </header>
+
+          <section class="jsnotes-section">
+            <h2>What is an Operator?</h2>
+            <p>An operator is a special symbol or keyword used to perform an operation on values. The values are called <strong>operands</strong>. Together they form an <strong>expression</strong> that evaluates to a single value.</p>
+            <div class="jsnotes-code-block">
+              <pre><code>// 5 + 10
+// ↑ operator: +
+// ↑ operands: 5 and 10
+// ↑ result: 15
+let result = 5 + 10;</code></pre>
+            </div>
+          </section>
+
+          <section class="jsnotes-section">
+            <h2>Assignment Operators</h2>
+            <div class="jsnotes-table">
+              <div class="jsnotes-table-row jsnotes-table-header">
+                <span>Operator</span><span>Example</span><span>Equivalent To</span>
+              </div>
+              <div class="jsnotes-table-row"><span>=</span><span>x = y</span><span>x = y</span></div>
+              <div class="jsnotes-table-row"><span>+=</span><span>x += y</span><span>x = x + y</span></div>
+              <div class="jsnotes-table-row"><span>-=</span><span>x -= y</span><span>x = x - y</span></div>
+              <div class="jsnotes-table-row"><span>*=</span><span>x *= y</span><span>x = x * y</span></div>
+              <div class="jsnotes-table-row"><span>/=</span><span>x /= y</span><span>x = x / y</span></div>
+              <div class="jsnotes-table-row"><span>%=</span><span>x %= y</span><span>x = x % y</span></div>
+              <div class="jsnotes-table-row"><span>**=</span><span>x **= y</span><span>x = x ** y</span></div>
+            </div>
+          </section>
+
+          <section class="jsnotes-section">
+            <h2>Arithmetic Operators</h2>
+            <div class="jsnotes-code-block">
+              <pre><code>// Standard math
+5 + 3;   // 8
+5 - 3;   // 2
+5 * 3;   // 15
+5 / 3;   // 1.666...
+5 % 3;   // 2 (remainder — great for even/odd checks)
+2 ** 3;  // 8 (exponentiation, ES2016)
+
+// Increment / Decrement — GOTCHA: order matters!
+let postfix = 5;
+console.log(postfix++); // 5 — evaluates THEN increments
+console.log(postfix);   // 6
+
+let prefix = 5;
+console.log(++prefix); // 6 — increments THEN evaluates
+console.log(prefix);   // 6</code></pre>
+            </div>
+          </section>
+
+          <section class="jsnotes-section">
+            <h2>Comparison Operators — Strict vs Loose</h2>
+            <div class="jsnotes-callout jsnotes-callout--green">
+              <strong>🏆 Professional Rule:</strong> Always use <code>===</code> (strict equality). Avoid <code>==</code> (loose equality). It causes coercion bugs.
+            </div>
+
+            <div class="jsnotes-comparison-grid">
+              <div>
+                <h3 style="color:var(--pink)">❌ Loose Equality <code>==</code></h3>
+                <div class="jsnotes-code-block">
+                  <pre><code>// Performs type coercion first!
+7 == "7";    // true (string→number)
+0 == false;  // true (bool→0)
+null == undefined; // true</code></pre>
+                </div>
+              </div>
+              <div>
+                <h3 style="color:var(--green)">✅ Strict Equality <code>===</code></h3>
+                <div class="jsnotes-code-block">
+                  <pre><code>// No coercion — checks type AND value
+7 === "7";    // false
+0 === false;  // false
+null === undefined; // false</code></pre>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section class="jsnotes-section">
+            <h2>Logical Operators &amp; Short-Circuiting</h2>
+            <div class="jsnotes-code-block">
+              <pre><code>// && — AND: stops at first falsy
+let user = null;
+if (user && user.name === "Admin") { /* safe */ }
+// user is null (falsy), so user.name is never evaluated ✅
+
+// || — OR: stops at first truthy — great for defaults
+let username = "";
+let displayName = username || "Guest"; // "Guest"
+
+// ! — NOT: inverts the boolean
+let isLoggedIn = false;
+if (!isLoggedIn) { console.log("Please log in."); }</code></pre>
+            </div>
+
+            <h3>Truthy &amp; Falsy Values</h3>
+            <div class="jsnotes-comparison-grid">
+              <div>
+                <div class="jsnotes-callout jsnotes-callout--pink">
+                  <strong>6 Falsy Values:</strong><br>
+                  <code>false</code>, <code>0</code>, <code>""</code>, <code>null</code>, <code>undefined</code>, <code>NaN</code>
+                </div>
+              </div>
+              <div>
+                <div class="jsnotes-callout jsnotes-callout--green">
+                  <strong>Everything else is Truthy:</strong><br>
+                  <code>"false"</code>, <code>[]</code>, <code>{}</code>, <code>1</code>, <code>"hello"</code>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section class="jsnotes-section">
+            <h2>Ternary Operator</h2>
+            <p>A compact shorthand for <code>if...else</code>. Syntax: <code>condition ? ifTrue : ifFalse</code></p>
+            <div class="jsnotes-code-block">
+              <pre><code>let age = 20;
+let message = (age >= 18) ? "You can vote." : "You cannot vote yet.";
+console.log(message); // "You can vote."</code></pre>
+            </div>
+          </section>
+
+          <section class="jsnotes-section">
+            <h2>How Numbers Are Stored — Why <code>0.1 + 0.2 ≠ 0.3</code></h2>
+            <div class="jsnotes-callout jsnotes-callout--blue">
+              <strong>The root cause:</strong> Computers think in Base 2 (binary), but we give them Base 10 (decimal) problems. The translation is not always perfect.
+            </div>
+            <p><code>0.1</code> in binary is a repeating fraction (<code>0.0001100110011...</code>), just like <code>1/3</code> is <code>0.333...</code> in decimal. The computer truncates it, creating tiny rounding errors that accumulate.</p>
+            <div class="jsnotes-code-block">
+              <pre><code>console.log(0.1 + 0.2);          // 0.30000000000000004
+console.log(0.1 + 0.2 === 0.3);  // false
+
+// ✅ Fix for display:
+console.log((0.1 + 0.2).toFixed(2)); // "0.30"
+
+// ✅ Fix for financial work: use integers (store pence, not pounds)
+const priceInCents = 1099; // £10.99</code></pre>
+            </div>
+          </section>
+
+          <section class="jsnotes-section">
+            <h2>Type Conversion (Explicit)</h2>
+            <div class="jsnotes-callout jsnotes-callout--blue">
+              <strong>The "First Thought" Principle:</strong> Use the type name as a function — <code>Number()</code>, <code>String()</code>, <code>Boolean()</code>.
+            </div>
+            <div class="jsnotes-code-block">
+              <pre><code>// To String
+String(123);   // "123"
+String(true);  // "true"
+String(null);  // "null"
+
+// To Number
+Number("99.5");  // 99.5
+Number(true);    // 1
+Number(false);   // 0
+Number(null);    // 0
+Number("hello"); // NaN
+Number(undefined); // NaN
++("50");         // 50 (unary plus shorthand)
+
+// parseInt stops at first non-numeric character
+parseInt("100px"); // 100
+Number("100px");   // NaN
+
+// To Boolean — the 6 falsy values become false, everything else true
+Boolean(0);         // false
+Boolean("");        // false
+Boolean(null);      // false
+Boolean([]);        // true (empty array is truthy!)
+Boolean({});        // true</code></pre>
+            </div>
+          </section>
+
+          <section class="jsnotes-section">
+            <h2>Comparison Decision Tree</h2>
+            <div class="jsnotes-decision-tree">
+              <div class="jsnotes-dt-node jsnotes-dt-node--root">Comparing two values?</div>
+              <div class="jsnotes-dt-branch">
+                <div class="jsnotes-dt-path">
+                  <div class="jsnotes-dt-label">Using === or !==</div>
+                  <div class="jsnotes-dt-node">No coercion. Same type AND same value? → true. Otherwise → false.</div>
+                </div>
+                <div class="jsnotes-dt-path">
+                  <div class="jsnotes-dt-label">Using == or !=</div>
+                  <div class="jsnotes-dt-node">Same type? → compare values<br>null == undefined → true<br>Boolean involved? → convert to number<br>String + Number? → convert string to number</div>
+                </div>
+                <div class="jsnotes-dt-path">
+                  <div class="jsnotes-dt-label">Using &lt;, &gt;, &lt;=, &gt;=</div>
+                  <div class="jsnotes-dt-node">Both strings? → dictionary order<br>Otherwise → convert both to numbers<br>NaN anywhere → always false</div>
+                </div>
+              </div>
+            </div>
+          </section>
+        </article>
+
+        <!-- Lecture 3 -->
+        <article class="jsnotes-lecture" data-lecture="3" hidden>
+          <header class="jsnotes-lecture-header">
+            <p class="jsnotes-eyebrow">Lecture 04</p>
+            <h1>Loops, Numbers &amp; Strings</h1>
+            <p class="jsnotes-subtitle">Control flow, math built-ins, and the complete string toolbox.</p>
+          </header>
+
+          <section class="jsnotes-section">
+            <h2>Conditional Statements (if / else if / else)</h2>
+            <p>Think of it like deciding what to wear: check each condition top to bottom, the first one that's true wins, and everything else is skipped.</p>
+            <div class="jsnotes-code-block">
+              <pre><code>let score = 85;
+let grade;
+
+if (score >= 90) {
+  grade = 'A';
+} else if (score >= 80) {
+  grade = 'B';   // ← This runs — score is 85
+} else if (score >= 70) {
+  grade = 'C';
+} else {
+  grade = 'F';
+}
+
+console.log(`Your grade is: ${grade}`); // "Your grade is: B"</code></pre>
+            </div>
+          </section>
+
+          <section class="jsnotes-section">
+            <h2>The Three Loops</h2>
+
+            <h3>1. <code>for</code> Loop — When you know the count</h3>
+            <div class="jsnotes-prop-list">
+              <div class="jsnotes-prop"><span class="jsnotes-prop-key">Initialization</span><span>Runs once at the start. Creates the counter.</span></div>
+              <div class="jsnotes-prop"><span class="jsnotes-prop-key">Condition</span><span>Checked before each iteration. If false, loop stops.</span></div>
+              <div class="jsnotes-prop"><span class="jsnotes-prop-key">Final Expression</span><span>Runs after each iteration. Usually increments counter.</span></div>
+            </div>
+            <div class="jsnotes-code-block">
+              <pre><code>for (let i = 1; i <= 5; i++) {
+  console.log("Repetition number:", i);
+}
+// Output: 1, 2, 3, 4, 5</code></pre>
+            </div>
+
+            <h3>2. <code>while</code> Loop — When you don't know the count</h3>
+            <div class="jsnotes-callout jsnotes-callout--pink">
+              <strong>⚠️ Danger:</strong> Always ensure the condition will eventually become false, or you'll create an infinite loop that crashes the page.
+            </div>
+            <div class="jsnotes-code-block">
+              <pre><code>let playerHealth = 10;
+
+while (playerHealth > 0) {
+  console.log(`Health: ${playerHealth}. Attacking!`);
+  playerHealth -= 3;
+}
+// Output: 10 → 7 → 4 → 1 → loop ends</code></pre>
+            </div>
+
+            <h3>3. <code>do...while</code> Loop — Guaranteed first run</h3>
+            <p>The code block runs <strong>at least once</strong> because the condition is checked <em>after</em> the first execution.</p>
+            <div class="jsnotes-code-block">
+              <pre><code>let userResponse;
+
+do {
+  userResponse = prompt("Please type 'yes' to continue:");
+} while (userResponse !== "yes");
+
+console.log("You typed 'yes'. Thank you!");</code></pre>
+            </div>
+          </section>
+
+          <section class="jsnotes-section">
+            <h2>The Number Type In-Depth</h2>
+            <p>All numbers in JavaScript are <strong>64-bit double-precision floating-point</strong> (IEEE 754). No separate int/float types.</p>
+
+            <h3>Creating Numbers</h3>
+            <div class="jsnotes-code-block">
+              <pre><code>let billion = 1e9;     // 1,000,000,000
+let tiny = 5e-6;       // 0.000005
+let hex = 0xFF;        // 255 (hexadecimal)
+let binary = 0b1010;   // 10 (binary)
+let octal = 0o77;      // 63 (octal)</code></pre>
+            </div>
+
+            <h3>Special Values</h3>
+            <div class="jsnotes-code-block">
+              <pre><code>1 / 0;           // Infinity
+-1 / 0;          // -Infinity
+"hello" / 2;     // NaN
+
+// NaN is the only value NOT equal to itself!
+NaN === NaN;     // false ← always false!
+
+// ✅ Check for NaN properly:
+Number.isNaN(NaN);     // true
+Number.isNaN("hello"); // false (no coercion)</code></pre>
+            </div>
+
+            <h3>Important Number Methods</h3>
+            <div class="jsnotes-code-block">
+              <pre><code>let num = 255;
+num.toString(16);  // "ff" (hex)
+num.toString(2);   // "11111111" (binary)
+
+let price = 19.991234;
+price.toFixed(2);  // "19.99" (returns a STRING)
+
+let n = 123.456;
+n.toPrecision(4);  // "123.5" (4 significant digits)</code></pre>
+            </div>
+          </section>
+
+          <section class="jsnotes-section">
+            <h2>The Math Object</h2>
+            <div class="jsnotes-code-block">
+              <pre><code>// Rounding
+Math.round(4.7);  // 5 — standard rounding
+Math.floor(4.7);  // 4 — always rounds DOWN
+Math.ceil(4.2);   // 5 — always rounds UP
+Math.trunc(4.9);  // 4 — removes decimal, toward zero
+
+// Other essentials
+Math.abs(-10);         // 10
+Math.max(10, -5, 100); // 100
+Math.min(10, -5, 100); // -5
+Math.sqrt(16);         // 4
+Math.PI;               // 3.14159...
+
+// Random number between 1 and 10 (inclusive):
+Math.floor(Math.random() * 10) + 1;</code></pre>
+            </div>
+
+            <h3>Building the Random Integer Formula</h3>
+            <div class="jsnotes-callout jsnotes-callout--blue">
+              Formula: <code>Math.floor(Math.random() * (max - min + 1)) + min</code>
+            </div>
+            <div class="jsnotes-code-block">
+              <pre><code>function getRandomInt(min, max) {
+  // 1. Range size: how many possible outcomes?
+  const range = max - min + 1;       // e.g., 10-1+1 = 10
+
+  // 2. Scale up to [0, range)
+  const scaled = Math.random() * range; // e.g., [0, 10)
+
+  // 3. Floor to get integer in [0, range-1]
+  const floored = Math.floor(scaled);   // e.g., 0,1,...,9
+
+  // 4. Shift up to [min, max]
+  return floored + min;                 // e.g., 1,2,...,10
+}
+
+console.log(getRandomInt(1, 6)); // random dice roll 🎲</code></pre>
+            </div>
+          </section>
+
+          <section class="jsnotes-section">
+            <h2>Strings In-Depth</h2>
+            <p>Strings are <strong>immutable</strong> — any method that appears to modify a string returns a <em>new</em> string. The original is always untouched.</p>
+
+            <h3>Creating Strings</h3>
+            <div class="jsnotes-code-block">
+              <pre><code>let single = 'Hello';
+let double = "World";
+let template = `Hello, ${single}`; // template literals (ES6) ← prefer this</code></pre>
+            </div>
+
+            <h3>Core Concepts</h3>
+            <div class="jsnotes-code-block">
+              <pre><code>let msg = "JavaScript";
+// J  a  v  a  S  c  r  i  p  t
+// 0  1  2  3  4  5  6  7  8  9
+
+msg.length;            // 10
+msg[0];                // "J"
+msg[msg.length - 1];   // "t" (last character)
+
+// Immutability — you cannot change in place
+msg[0] = "j";          // silent fail!
+console.log(msg);      // "JavaScript" — unchanged</code></pre>
+            </div>
+
+            <h3>Essential String Methods</h3>
+            <div class="jsnotes-code-block">
+              <pre><code>let s = "The quick brown fox jumps over the lazy fox.";
+
+// Case
+s.toUpperCase();         // "THE QUICK BROWN FOX..."
+s.toLowerCase();         // "the quick brown fox..."
+
+// Finding
+s.indexOf("fox");        // 16 (first occurrence)
+s.lastIndexOf("fox");    // 40 (last occurrence)
+s.indexOf("cat");        // -1 (not found)
+s.includes("jumps");     // true ← most readable ✅
+
+// Extracting
+let t = "JavaScript";
+t.slice(0, 4);           // "Java"
+t.slice(4);              // "Script"
+t.slice(-6);             // "Script" (negative = from end)
+
+// Replacing
+let g = "hello world, hello there";
+g.replace("hello", "hi");      // "hi world, hello there" (first only)
+g.replaceAll("hello", "hi");   // "hi world, hi there" (all) ✅
+
+// Cleaning
+"   user@email.com   ".trim(); // "user@email.com"
+
+// Splitting into array
+"a,b,c".split(",");  // ["a", "b", "c"]
+"hello".split("");   // ["h","e","l","l","o"]</code></pre>
+            </div>
+
+            <h3>Template Literals — The Modern Way</h3>
+            <div class="jsnotes-comparison-grid">
+              <div>
+                <h4 style="color:var(--pink)">❌ Old Way (concatenation)</h4>
+                <div class="jsnotes-code-block">
+                  <pre><code>let name = "Alice";
+let age = 30;
+let msg = "Hello, my name is " + 
+          name + " and I am " + 
+          age + " years old.";</code></pre>
+                </div>
+              </div>
+              <div>
+                <h4 style="color:var(--green)">✅ New Way (template literal)</h4>
+                <div class="jsnotes-code-block">
+                  <pre><code>let name = "Alice";
+let age = 30;
+let msg = `Hello, my name is ${name}
+and I am ${age} years old.
+Next year I'll be ${age + 1}.`;</code></pre>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <div class="jsnotes-callout jsnotes-callout--green jsnotes-takeaway">
+            <strong>🎯 Summary:</strong> Use <code>for</code> when you know the count, <code>while</code> when you don't. Always use <code>Math.floor(Math.random() * range) + min</code> for integers. Prefer template literals over string concatenation. And remember — strings are immutable, so every method returns a new string.
+          </div>
+        </article>
+      </main>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
